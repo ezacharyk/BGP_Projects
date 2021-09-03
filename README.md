@@ -13,7 +13,7 @@ You can follow the goals, notes and updates for the overall goal of this project
 
 This project will contain HaxeFlixel versions of the final project from each of the following chapters. Chapter 1 is excluded because it contains no code examples.
 
-- [ ] 2: Creating an Engine for Games
+- [X] 2: Creating an Engine for Games
 - [ ] 3: Learning to Draw Basic Graphics
 - [ ] 4: Drawing Graphical Images
 - [ ] 5: Controlling Games with the Keyboard and Mouse
