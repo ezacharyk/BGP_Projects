@@ -10,8 +10,11 @@ class PlayState extends FlxState
 	{
 		super.create();
 
+		// Create a new variable using our slideshow class.
 		slideshow = new Slideshow(0, 0);
+		// add that variable to the Play State
 		add(slideshow);
+		// start the animation by the name of "slide"
 		slideshow.animation.play("slide");
 	}
 
