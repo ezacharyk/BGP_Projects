@@ -17,7 +17,7 @@ This project will contain HaxeFlixel versions of the final project from each of 
 - [X] 3: Learning to Draw Basic Graphics
 - [X] 4: Drawing Graphical Images
 - [X] 5: Controlling Games with the Keyboard and Mouse
-- [ ] 6: Example Game: Brainiac
+- [X] 6: Example Game: Brainiac
 - [ ] 7: Improving Input with Joysticks
 - [ ] 8: Example Game: Light Cycles
 - [ ] 9: Making Things Move with Sprite Animation
