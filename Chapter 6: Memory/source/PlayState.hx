@@ -7,6 +7,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.math.FlxRandom;
 import flixel.text.FlxText;
+import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
 
 /**
@@ -103,10 +104,8 @@ class PlayState extends FlxState
 					moving = false;
 					actionDelay = 1;
 
-					Reg.cardObject1.x = stackX;
-					Reg.cardObject1.y = stackY;
-					Reg.cardObject2.x = stackX;
-					Reg.cardObject2.y = stackY;
+					var tween = FlxTween.linearMotion(Reg.cardObject1, Reg.cardObject1.x, Reg.cardObject1.y, stackX, stackY, 1, true);
+					tween = FlxTween.linearMotion(Reg.cardObject2, Reg.cardObject2.x, Reg.cardObject2.y, stackX, stackY, 1, true);
 					// move cards to pile
 					Reg.cardObject1 = null;
 					Reg.cardObject2 = null;
