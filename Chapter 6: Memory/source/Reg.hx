@@ -1,13 +1,5 @@
 package;
 
-import flixel.FlxSprite;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.group.FlxGroup;
-import flixel.text.FlxText;
-import flixel.tile.FlxTilemap;
-import flixel.ui.FlxButton;
-import flixel.util.FlxSave;
-
 /**
  * Handy, pre-built Registry class that can be used to store 
  * references to objects and other things for quick-access. 
