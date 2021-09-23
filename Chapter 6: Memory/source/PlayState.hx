@@ -140,8 +140,12 @@ class PlayState extends FlxState
 		}
 		else
 		{
-			// If we have matched all the cards we win the game.
-			winState();
+			actionDelay -= elapsed;
+			if (actionDelay < 0)
+			{
+				// If we have matched all the cards we win the game.
+				winState();
+			}
 		}
 	}
 
