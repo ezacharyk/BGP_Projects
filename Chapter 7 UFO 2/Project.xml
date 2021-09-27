@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Chapter 4: Slideshow" file="Chapter 4: Slideshow" main="Main" version="0.0.1" company="HaxeFlixel" />
+	<app title="Chapter 7: UFO 2" file="Chapter 7 UFO 2" main="Main" version="0.0.1" company="HaxeFlixel" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -16,7 +16,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="320" height="180" fps="60" background="#000000" hardware="true" vsync="false" />
+	<window width="640" height="360" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="false" />
