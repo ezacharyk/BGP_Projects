@@ -3,14 +3,12 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.actions.FlxAction;
 import flixel.input.actions.FlxActionManager;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
-import flixel.util.FlxSpriteUtil;
 
 class Unicorn extends FlxSprite
 {
@@ -19,10 +17,8 @@ class Unicorn extends FlxSprite
 	static var actions:FlxActionManager;
 	static var controller:FlxGamepad;
 
-	public var lines:FlxTypedGroup<FlxSprite>;
-	public var line:FlxSprite;
-
-	private var breakPoint:FlxPoint;
+	public var breakPoint:FlxPoint;
+	public var changeDir:Bool = false;
 
 	var _up:FlxActionDigital;
 	var _down:FlxActionDigital;
@@ -41,11 +37,10 @@ class Unicorn extends FlxSprite
 		// we play our default animation
 		animation.play("run");
 
-		lines = new FlxTypedGroup();
-		line = new FlxSprite();
-		breakPoint = new FlxPoint(x + 6, y + 8);
-
+		// sets the size of the prite's hit box
 		setSize(16, 16);
+
+		// If we have gamepads connected, do some modifying of their model
 		if (FlxG.gamepads.numActiveGamepads > gamepadID)
 		{
 			controller = FlxG.gamepads.getByID(gamepadID);
@@ -55,13 +50,20 @@ class Unicorn extends FlxSprite
 			}
 		}
 
+		// Player 0 is actually player 1
 		if (player == 0)
 		{
-			facing = UP;
-			angle = 0;
-			velocity.set(SPEED, 0);
-			velocity.rotate(FlxPoint.weak(0, 0), -90);
+			// Set the default values of a few variables
+			// player 1 starts at the bottom of the screen and moves up
+			facing = UP; // the current direction the player is facing
+			angle = 0; // the current angle they are moving in (straight up)
+			velocity.set(SPEED, 0); // Start the player moving
+			velocity.rotate(FlxPoint.weak(0, 0), -90); // Rotate the sprite to the correct direction.
 
+			// Set the breakpoint of the end of the line to the player's current position
+			breakPoint = new FlxPoint(x + origin.x, y + origin.y + 16);
+
+			// We define out player inputs.
 			_up = new FlxActionDigital().addGamepad(DPAD_UP, PRESSED, gamepadID).addGamepad(LEFT_STICK_DIGITAL_UP, PRESSED, gamepadID).addKey(W, PRESSED);
 
 			_down = new FlxActionDigital().addGamepad(DPAD_DOWN, PRESSED, gamepadID)
@@ -78,10 +80,13 @@ class Unicorn extends FlxSprite
 		}
 		else
 		{
+			// Player 2 starts at the top of the screen and faces and moves down down
 			facing = DOWN;
 			angle = 180;
 			velocity.set(SPEED, 0);
 			velocity.rotate(FlxPoint.weak(0, 0), 90);
+
+			breakPoint = new FlxPoint(x + origin.x, y + origin.y - 16);
 
 			_up = new FlxActionDigital().addGamepad(DPAD_UP, PRESSED, gamepadID).addGamepad(LEFT_STICK_DIGITAL_UP, PRESSED, gamepadID).addKey(UP, PRESSED);
 
@@ -97,6 +102,8 @@ class Unicorn extends FlxSprite
 				.addGamepad(LEFT_STICK_DIGITAL_RIGHT, PRESSED, gamepadID)
 				.addKey(RIGHT, PRESSED);
 		}
+
+		// Add the inputs to the actiosn object
 		if (actions == null)
 			actions = FlxG.inputs.add(new FlxActionManager());
 		actions.addActions([_up, _down, _left, _right]);
@@ -111,16 +118,16 @@ class Unicorn extends FlxSprite
 
 	function updateMovement(elapsed:Float)
 	{
+		// only move if the player has health
 		if (health > 0)
 		{
-			drawLine();
-			// we define some variables to help us track which way our ufo is moving
+			// we define some variables to help us track which way our unicorn is moving
 			var up:Bool = false;
 			var down:Bool = false;
 			var left:Bool = false;
 			var right:Bool = false;
 
-			// we determine which way our ufo is moving based on which keys are pressed
+			// we determine which way our unicorn is moving based on which keys are pressed
 			// We also added controller input above for each movement direction.
 			up = _up.triggered;
 			down = _down.triggered;
@@ -141,6 +148,16 @@ class Unicorn extends FlxSprite
 				left = false;
 			if (right && facing == LEFT)
 				right = false;
+
+			// if the player is changing direction we flag that for the draw line function in the PlayState
+			if ((facing == UP || facing == DOWN) && (left == true || right == true))
+			{
+				changeDir = true;
+			}
+			if ((facing == LEFT || facing == RIGHT) && (up == true || down == true))
+			{
+				changeDir = true;
+			}
 
 			// if we are moving in any direction we calculate the speed and angle
 			if (up || down || left || right)
@@ -181,21 +198,8 @@ class Unicorn extends FlxSprite
 
 	public function stopMovement()
 	{
+		// We stop the player from moving and set its healh to 0 to prevent the updateMovement function from triggering
 		velocity.set(0, 0);
 		health = 0;
-	}
-
-	private function drawLine()
-	{
-		// Create a line style, similar to CSS border styling
-		var lineStyle:LineStyle = {color: FlxColor.YELLOW, thickness: 6};
-		var playerLoc:FlxPoint = new FlxPoint(x + 6, y + 8);
-		var minx:Int = FlxMath.minInt(Std.int(playerLoc.x), Std.int(breakPoint.x));
-		var maxx:Int = FlxMath.maxInt(Std.int(playerLoc.x), Std.int(breakPoint.x));
-		var miny:Int = FlxMath.minInt(Std.int(playerLoc.y), Std.int(breakPoint.y));
-		var maxy:Int = FlxMath.maxInt(Std.int(playerLoc.y), Std.int(breakPoint.y));
-		line = new FlxSprite(minx, miny);
-		line.makeGraphic(6, maxy - miny, FlxColor.TRANSPARENT, true);
-		FlxSpriteUtil.drawLine(line, 0, 0, maxx - minx, maxy - miny, lineStyle);
 	}
 }
