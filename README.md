@@ -19,7 +19,7 @@ This project will contain HaxeFlixel versions of the final project from each of 
 - [X] 5: Controlling Games with the Keyboard and Mouse
 - [X] 6: Example Game: Brainiac
 - [X] 7: Improving Input with Joysticks
-- [ ] 8: Example Game: Light Cycles
+- [X] 8: Example Game: Light Cycles
 - [ ] 9: Making Things Move with Sprite Animation
 - [ ] 10: Managing a World of Sprites
 - [ ] 11: Example Game: Henway
