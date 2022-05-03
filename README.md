@@ -21,7 +21,7 @@ This project will contain HaxeFlixel versions of the final project from each of 
 - [X] 7: Improving Input with Joysticks
 - [X] 8: Example Game: Light Cycles
 - [X] 9: Making Things Move with Sprite Animation
-- [ ] 10: Managing a World of Sprites
+- [X] 10: Managing a World of Sprites
 - [ ] 11: Example Game: Henway
 - [ ] 12 Playing Digital Sound Effects
 - [ ] 13: Playing MIDI Music
