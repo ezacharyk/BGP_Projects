@@ -14,8 +14,10 @@ class PlayState extends FlxState
 		super.create();
 
 		// Create a starfield
+		// This is a fun class that generates a field of dots the fly across the screen to give the illusion of movement.
 		add(new FlxStarField2D());
 
+		// generate some planets.
 		jupiter = new Planet(Std.int(Math.random() * 428 - 210) + 210, Std.int(Math.random() * 320 - 160) + 160, "Jupiter");
 		add(jupiter);
 		neptune = new Planet(Std.int(Math.random() * 428 - 210) + 210, Std.int(Math.random() * 320 - 160) + 160, "Neptune");

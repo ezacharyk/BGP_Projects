@@ -36,6 +36,7 @@ class Planet extends FlxSprite
 		// Setup the mouse events
 		FlxMouseEventManager.add(this, onDown, onUp, null, null);
 
+		// call out function to generate a random velocity
 		generateVelocity();
 	}
 
@@ -43,18 +44,25 @@ class Planet extends FlxSprite
 	{
 		super.update(elapsed);
 
+		// if we are dragging the sprite, set its location to the mouse (minus the object's width/height)
 		if (dragging)
 		{
 			x = FlxG.mouse.x - width / 2;
 			y = FlxG.mouse.y - height / 2;
 		}
+
+		/* 
+			The next few statemes perform different actions based on which planet we are acting on.
+		 */
 		if (name == "Jupiter")
 		{
+			// This function allows the sprite to wrap to the oposite side of the screen when it hits a border.
 			FlxSpriteUtil.screenWrap(this);
 		}
 
 		if (name == "Neptune")
 		{
+			// This block just causes the sprite to ricochet when it hits the border.
 			if (y >= FlxG.height - 96 || y <= 0)
 			{
 				velocity.y *= -1;
@@ -67,6 +75,7 @@ class Planet extends FlxSprite
 
 		if (name == "Mars")
 		{
+			// This one causes the sprite to stop moving when it hits the border.
 			if (x >= FlxG.width - 64 || y >= FlxG.height - 64 || x <= 0 || y <= 0)
 			{
 				velocity.x = 0;
@@ -77,19 +86,23 @@ class Planet extends FlxSprite
 
 	function onDown(_)
 	{
+		// when the sprite is clicked and held by the mouse, turn on the dragging behavior
 		dragging = true;
 	}
 
 	function onUp(_)
 	{
+		// when we release the mouse, we turn off the dragging behavior and generate a new velocity
 		dragging = false;
 		generateVelocity();
 	}
 
 	private function generateVelocity()
 	{
+		// We set a velocity
 		var initial_velocity:Int = 200;
 
+		// We use some fancy randomization to set the direction the planet is moving.
 		if (FlxG.random.float() < 0.5)
 		{
 			if (FlxG.random.float() < 0.5)
