@@ -28,14 +28,14 @@ class GameOverState extends FlxState
 		background.loadGraphic(AssetPaths.trails__png, false, 320, 180);
 		add(background);
 
-		// Set up a game title
+		// Set up a game over text
 		header = new FlxText(0, 16, 320, "Game Over");
 		header.size = 36;
 		header.alignment = "center";
 		header.setBorderStyle(OUTLINE, 0xFF897A89, 2);
 		add(header);
 
-		// Set up a game title
+		// Set up a game start over text
 		start = new FlxText(0, 100, 320, "Press Start to Play Again");
 		start.size = 16;
 		start.alignment = "center";
@@ -55,6 +55,7 @@ class GameOverState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		// wait for the player to hit start
 		if (FlxG.gamepads.numActiveGamepads > 0)
 		{
 			if (controller.justPressed.START)

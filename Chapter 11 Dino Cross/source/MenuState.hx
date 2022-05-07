@@ -35,7 +35,7 @@ class MenuState extends FlxState
 		header.setBorderStyle(OUTLINE, 0xFF897A89, 2);
 		add(header);
 
-		// Set up a game title
+		// Set up a game start text
 		start = new FlxText(0, 100, 320, "Press Start");
 		start.size = 24;
 		start.alignment = "center";
@@ -55,6 +55,8 @@ class MenuState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		// wait for the player to hit start
 		if (FlxG.gamepads.numActiveGamepads > 0)
 		{
 			if (controller.justPressed.START)

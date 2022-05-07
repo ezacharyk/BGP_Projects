@@ -6,7 +6,6 @@ import flixel.FlxState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.input.gamepad.FlxGamepad;
 import flixel.text.FlxText;
 import flixel.util.FlxCollision;
 
@@ -30,8 +29,6 @@ class PlayState extends FlxState
 	private var start:FlxText;
 	private var wins:Int = 0;
 
-	static var controller:FlxGamepad;
-
 	override public function create()
 	{
 		super.create();
@@ -43,66 +40,69 @@ class PlayState extends FlxState
 		background.loadGraphic(AssetPaths.trails__png, false, 320, 180);
 		add(background);
 
-		// we create our ufo
+		// we create our player compy
 		compy = new Compy(32, 80, FlxAtlasFrames.fromTexturePackerJson(AssetPaths.compy__png, AssetPaths.compy__json));
 		add(compy);
+		// this function draws the number of lives left
 		updateLives();
 
+		// add all th other dinos to the game
 		addDinos();
 
-		// Set up a game title
+		// Set up a scoreboard in the bottom left of the screen
 		scoreboard = new FlxText(0, 164, 48, "0");
 		scoreboard.size = 8;
 		scoreboard.alignment = "right";
 		scoreboard.setBorderStyle(OUTLINE, 0xFF897A89, 2);
 		add(scoreboard);
-
-		if (FlxG.gamepads.numActiveGamepads > 0)
-		{
-			controller = FlxG.gamepads.getByID(0);
-			if (controller.model != XINPUT)
-			{
-				controller.model = XINPUT;
-			}
-		}
 	}
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		// if we aren't in a game over state, then manage the gameplay
 		if (!gameOver)
 		{
+			// first we call out check collisions function
 			checkCollisions();
+			// if the player is dead or at the goal, we cycle our delay timer
 			if (compy.x >= 256 || compy.health == 0)
 			{
 				resetTimer -= elapsed;
 			}
+			// if the delay timer is hit, we need to do some other things
 			if (resetTimer <= 0)
 			{
+				// reset the delay timer
 				resetTimer = 1;
+				// if the compy is not dead, then we are in a win condition
 				if (compy.health > 0)
 				{
+					// for a littel fun, we keep track of the number of times the player makes it accross and multiply the score by it.
 					wins += 1;
 					score += 10 * wins;
 					scoreboard.text = Std.string(score);
 				}
-				else
+				else // the compy is dead so we need to deal with that.
 				{
+					// reset their health, update the number of lives left
 					compy.health = 1;
 					remove(lives);
 					updateLives();
 				}
+				// either way, the compy goes back to start
 				compy.x = 32;
 				compy.y = 80;
 			}
 		}
-		else
+		else // the game is over
 		{
+			// once the delay timer is done, go to game over
 			if (resetTimer <= 0)
 			{
 				goToGameOver();
 			}
-			else
+			else // cycle the delay timer
 			{
 				resetTimer -= elapsed;
 			}
@@ -111,13 +111,16 @@ class PlayState extends FlxState
 
 	private function checkCollisions()
 	{
-		// we check if either player collides with any line in hte line Group.
+		// we check if either player collides with any dino in the dino Group.
 		for (dino in dinosaurs)
 		{
+			// we don't need to do anything if we have already determined the player is dead
 			if (compy.health > 0)
 			{
+				// see if any pixel of the player has collided with any pixel of the other dinos
 				if (FlxCollision.pixelPerfectCheck(dino, compy))
 				{
+					// if the player has hit a dino, then kill it, reduce their lives, and if their lives are 0 flag a game over.
 					compy.health = 0;
 					compy.lives -= 1;
 					if (compy.lives == 0)
@@ -129,6 +132,10 @@ class PlayState extends FlxState
 		}
 	}
 
+	/**
+	 * In this function we just create a whole lot of dinos and add them to the dinosaurs group. 
+	 * I set them up in the order they appear on screen from left to right. Each typeof dino has a different behavior.
+	 */
 	private function addDinos()
 	{
 		dinosaurs = new FlxTypedGroup();
@@ -181,6 +188,9 @@ class PlayState extends FlxState
 		dinosaurs.add(velociraptor);
 	}
 
+	/**
+	 * This function sees how many lives the player has left and draws them to the screen.
+	 */
 	private function updateLives()
 	{
 		lives = new FlxTypedGroup();
@@ -194,6 +204,9 @@ class PlayState extends FlxState
 		}
 	}
 
+	/**
+	 * If the game is over, go to the game over state.
+	 */
 	private function goToGameOver()
 	{
 		FlxG.switchState(new GameOverState());
