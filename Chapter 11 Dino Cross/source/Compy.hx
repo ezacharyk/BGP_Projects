@@ -5,7 +5,6 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.input.actions.FlxAction;
 import flixel.input.actions.FlxActionManager;
-import flixel.math.FlxPoint;
 
 enum MoveDirection
 {
@@ -67,7 +66,7 @@ class Compy extends FlxSprite
 		setFacingFlip(RIGHT, false, false);
 		setFacingFlip(LEFT, true, false);
 
-		// we define the drag of our ufo so that it stops when we stop pushing keys
+		// we define the drag of our compy so that it stops when we stop pushing keys
 		setSize(16, 16);
 
 		// in the following lines, we create event watchers. They will look at specific button presses and let us know when it is triggered.
@@ -99,7 +98,6 @@ class Compy extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		// we define a movement function and call it from here to keep the update function clean and easy to read
 		// Move the player to the next block
 		if (moveToNextTile)
 		{
@@ -122,19 +120,20 @@ class Compy extends FlxSprite
 			moveToNextTile = false;
 			animation.play("idle");
 		}
+		// we define a movement function and call it from here to keep the update function clean and easy to read
 		updateMovement(elapsed);
 		super.update(elapsed);
 	}
 
 	function updateMovement(elapsed:Float)
 	{
-		// we define some variables to help us track which way our ufo is moving
+		// we define some variables to help us track which way our compy is moving
 		var up:Bool = false;
 		var down:Bool = false;
 		var left:Bool = false;
 		var right:Bool = false;
 
-		// we determine which way our ufo is moving based on which keys are pressed
+		// we determine which way our compy is moving based on which keys are pressed
 		// We also added controller input for each movement direction.
 		up = _up.triggered;
 		down = _down.triggered;
@@ -148,9 +147,10 @@ class Compy extends FlxSprite
 			left = right = false;
 
 		// if we are moving in any direction we calculate the speed and angle
+		// we only need to move if we are alive and if we are not at the end
 		if ((up || down || left || right) && x < 256 && health > 0)
 		{
-			// we keep playing the hover animation by default
+			// we keep playing the jump animation by default
 			animation.play("jump");
 			if (up)
 			{

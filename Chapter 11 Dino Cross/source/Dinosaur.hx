@@ -3,7 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.util.FlxSpriteUtil;
 
 class Dinosaur extends FlxSprite
 {
@@ -21,43 +20,50 @@ class Dinosaur extends FlxSprite
 		setSize(32, 64);
 	}
 
+	/**
+	 * In the update function, we only need to check if the dinos need to wrap around the screen
+	 * @param elapsed 
+	 */
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
 		screenWrap();
 	}
 
+	/**
+	 * The next set of function are used to add dinosaurs that move up on the screen.
+	 * We only need to set their velocity and size.
+	 */
 	public function setUpTriceratops()
 	{
-		// Setup the mouse events
 		velocity.y = -30;
 		setSize(32, 64);
 	}
 
 	public function setUpStegasaurus()
 	{
-		// Setup the mouse events
 		velocity.y = -25;
 		setSize(32, 64);
 	}
 
 	public function setUpVelociraptor()
 	{
-		// Setup the mouse events
 		velocity.y = -40;
 		setSize(16, 32);
 	}
 
 	public function setUpTyranosaurus()
 	{
-		// Setup the mouse events
 		velocity.y = -45;
 		setSize(32, 96);
 	}
 
+	/**
+	 * These next set of functionality, we set up dinosaurs that move down on the screen
+	 * We set their velocity, size and we flip their sprites.
+	 */
 	public function setDownStegasaurus()
 	{
-		// Setup the mouse events
 		velocity.y = 25;
 		setSize(32, 64);
 		setFacingFlip(DOWN, false, true);
@@ -66,7 +72,6 @@ class Dinosaur extends FlxSprite
 
 	public function setDownVelociraptor()
 	{
-		// Setup the mouse events
 		velocity.y = 40;
 		setSize(16, 32);
 		setFacingFlip(DOWN, false, true);
@@ -75,13 +80,17 @@ class Dinosaur extends FlxSprite
 
 	public function setDownTriceratops()
 	{
-		// Setup the mouse events
 		velocity.y = 30;
 		setFacingFlip(DOWN, false, true);
 		facing = DOWN;
 		setSize(32, 64);
 	}
 
+	/**
+	 * Here we take the functionality of the FlxSpriteUtil screenwrap function and put it into our class
+	 * The Sprite Util class was causing the dinos to magically appear on the screen I changed it to make them reappear
+	 * off screen. 
+	 */
 	private function screenWrap()
 	{
 		if ((x + frameWidth / 2) <= 0)
