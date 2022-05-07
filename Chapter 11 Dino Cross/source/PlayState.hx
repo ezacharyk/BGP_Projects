@@ -101,17 +101,6 @@ class PlayState extends FlxState
 			if (resetTimer <= 0)
 			{
 				goToGameOver();
-				if (FlxG.gamepads.numActiveGamepads > 0)
-				{
-					if (controller.justPressed.START)
-					{
-						FlxG.switchState(new PlayState());
-					}
-				}
-				if (FlxG.keys.justPressed.SPACE)
-				{
-					FlxG.switchState(new PlayState());
-				}
 			}
 			else
 			{
@@ -207,21 +196,6 @@ class PlayState extends FlxState
 
 	private function goToGameOver()
 	{
-		remove(lives);
-		remove(compy);
-
-		// Set up a game title
-		header = new FlxText(0, 16, 320, "Game Over");
-		header.size = 36;
-		header.alignment = "center";
-		header.setBorderStyle(OUTLINE, 0xFF897A89, 2);
-		add(header);
-
-		// Set up a game title
-		start = new FlxText(0, 100, 320, "Press Start to Play Again");
-		start.size = 16;
-		start.alignment = "center";
-		start.setBorderStyle(OUTLINE, 0xFF897A89, 2);
-		add(start);
+		FlxG.switchState(new GameOverState());
 	}
 }
