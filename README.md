@@ -23,7 +23,7 @@ This project will contain HaxeFlixel versions of the final project from each of 
 - [X] 9: Making Things Move with Sprite Animation
 - [X] 10: Managing a World of Sprites
 - [X] 11: Example Game: Henway
-- [ ] 12 Playing Digital Sound Effects
+- [X] 12 Playing Digital Sound Effects
 - [ ] 13: Playing MIDI Music
 - [ ] 14: Example Game: Battle Office
 - [ ] 15: Animating the Appearance of Sprites
