@@ -122,26 +122,14 @@ class PlayState extends FlxState
 		// Create a line style, similar to CSS border styling
 		var lineStyle:LineStyle = {color: FlxColor.YELLOW, thickness: 5};
 
-		// These four lines figure out the extremes so we can figure out the positioning and size of the following sprite
-		var minx:Int = FlxMath.minInt(Std.int(circle1.x), Std.int(circle2.x));
-		var maxx:Int = FlxMath.maxInt(Std.int(circle1.x), Std.int(circle2.x));
-		var miny:Int = FlxMath.minInt(Std.int(circle1.y), Std.int(circle2.y));
-		var maxy:Int = FlxMath.maxInt(Std.int(circle1.y), Std.int(circle2.y));
+		// Found a much better way to draw lines in the Unicron Dash game. So I am updating the code to draw lines here.
 
-		// Create a new sprite instance for the line
-		line = new FlxSprite(minx, miny);
-		// Create a transparent graphic to act as a canvas.
-		line.makeGraphic(maxx - minx, maxy - miny, FlxColor.TRANSPARENT, true);
-		if ((circle1.x < circle2.x && circle1.y < circle2.y) || circle1.x > circle2.x && circle1.y > circle2.y)
-		{
-			// One of the circles is in the top left corner. Draw line from top left to bottom right
-			FlxSpriteUtil.drawLine(line, 0, 0, maxx - minx, maxy - miny, lineStyle);
-		}
-		else
-		{
-			// Otherwise, draw the line from the bottom left to top right.
-			FlxSpriteUtil.drawLine(line, 0, maxy - miny, maxx - minx, 0, lineStyle);
-		}
+		// First we create a new sprite object positioned in the top left of the game window
+		line = new FlxSprite(0, 0);
+		// We make a transparent graphic the size of the window
+		line.makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT, true);
+		// We draw our line from the center of circle 1 to the center of circle 2
+		FlxSpriteUtil.drawLine(line, circle1.x, circle1.y, circle2.x, circle2.y, lineStyle);
 		// Add the line to the game state
 		add(line);
 	}
