@@ -10,4 +10,5 @@ class Reg
 {
 	// We use this variable to track what music track we are playing
 	public static var song:String = "Amazing Mazes";
+	public static var sfxMuted:Bool = false;
 }

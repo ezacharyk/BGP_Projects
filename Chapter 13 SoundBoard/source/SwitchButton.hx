@@ -41,6 +41,7 @@ class SwitchButton extends FlxSprite
 		{
 			case "switchup":
 				animation.frameName = "switchdown";
+				Reg.sfxMuted = true;
 				switchSound.play();
 
 				// if we flick the switch down, we loop through our sounds and turn the volume to 0
@@ -53,6 +54,7 @@ class SwitchButton extends FlxSprite
 				}
 			case "switchdown":
 				animation.frameName = "switchup";
+				Reg.sfxMuted = false;
 
 				// if we flick the switch up, we loop through the sounds and turn their volume up.
 				for (sound in FlxG.sound.list.members)

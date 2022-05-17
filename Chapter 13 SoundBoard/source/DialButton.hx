@@ -38,19 +38,31 @@ class DialButton extends FlxSprite
 			switch (animation.frameName)
 			{
 				case "dialup":
-					tickSound.volume = .5;
+					if (!Reg.sfxMuted)
+					{
+						tickSound.volume = .5;
+					}
 					tickSound.pan = 1;
 					animation.frameName = "dialright";
 				case "dialright":
-					tickSound.volume = .2;
+					if (!Reg.sfxMuted)
+					{
+						tickSound.volume = .2;
+					}
 					tickSound.pan = 0;
 					animation.frameName = "dialdown";
 				case "dialdown":
-					tickSound.volume = .5;
+					if (!Reg.sfxMuted)
+					{
+						tickSound.volume = .5;
+					}
 					tickSound.pan = -1;
 					animation.frameName = "dialleft";
 				case "dialleft":
-					tickSound.volume = 1;
+					if (!Reg.sfxMuted)
+					{
+						tickSound.volume = 1;
+					}
 					tickSound.pan = 0;
 					animation.frameName = "dialup";
 			}
