@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.tweens.FlxEase.EaseFunction;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween.TweenOptions;
@@ -61,7 +61,7 @@ class Planet extends FlxSprite
 		}
 
 		// Setup the mouse events
-		FlxMouseEventManager.add(this, onDown, onUp, null, null);
+		FlxMouseEvent.add(this, onDown, onUp, null, null);
 	}
 
 	override public function update(elapsed:Float)
