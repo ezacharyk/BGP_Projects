@@ -55,7 +55,7 @@ class UFO extends FlxSprite
 			var newAngle:Float = 0;
 			if (up)
 			{
-				newAngle = -90;
+				newAngle = 90;
 				if (left)
 					newAngle -= 45;
 				else if (right)
@@ -64,7 +64,7 @@ class UFO extends FlxSprite
 			}
 			else if (down)
 			{
-				newAngle = 90;
+				newAngle = -90;
 				if (left)
 					newAngle += 45;
 				else if (right)
@@ -73,18 +73,18 @@ class UFO extends FlxSprite
 			}
 			else if (left)
 			{
-				newAngle = 180;
+				newAngle = 0;
 				facing = LEFT;
 			}
 			else if (right)
 			{
-				newAngle = 0;
+				newAngle = 180;
 				facing = RIGHT;
 			}
 
 			// we determine our velocity based on angle and speed
 			velocity.set(SPEED, 0);
-			velocity.rotate(FlxPoint.weak(0, 0), newAngle);
+			velocity.pivotDegrees(FlxPoint.weak(0, 0), newAngle);
 		}
 	}
 }
