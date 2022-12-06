@@ -58,7 +58,7 @@ class Unicorn extends FlxSprite
 			facing = UP; // the current direction the player is facing
 			angle = 0; // the current angle they are moving in (straight up)
 			velocity.set(SPEED, 0); // Start the player moving
-			velocity.rotate(FlxPoint.weak(0, 0), -90); // Rotate the sprite to the correct direction.
+			velocity.pivotDegrees(FlxPoint.weak(0, 0), 90); // Rotate the sprite to the correct direction.
 
 			// Set the breakpoint of the end of the line to the player's current position
 			breakPoint = new FlxPoint(x + origin.x, y + origin.y + 16);
@@ -84,7 +84,7 @@ class Unicorn extends FlxSprite
 			facing = DOWN;
 			angle = 180;
 			velocity.set(SPEED, 0);
-			velocity.rotate(FlxPoint.weak(0, 0), 90);
+			velocity.pivotDegrees(FlxPoint.weak(0, 0), -90);
 
 			breakPoint = new FlxPoint(x + origin.x, y + origin.y - 16);
 
@@ -166,32 +166,32 @@ class Unicorn extends FlxSprite
 				var newAngle:Float = 0;
 				if (up)
 				{
-					newAngle = -90;
+					newAngle = 90;
 					facing = UP;
 					angle = 0;
 				}
 				else if (down)
 				{
-					newAngle = 90;
+					newAngle = -90;
 					facing = DOWN;
 					angle = 180;
 				}
 				else if (left)
 				{
-					newAngle = 180;
+					newAngle = 0;
 					facing = LEFT;
 					angle = 270;
 				}
 				else if (right)
 				{
-					newAngle = 0;
+					newAngle = 180;
 					facing = RIGHT;
 					angle = 90;
 				}
 
 				// we determine our velocity based on angle and speed
 				velocity.set(SPEED, 0);
-				velocity.rotate(FlxPoint.weak(0, 0), newAngle);
+				velocity.pivotDegrees(FlxPoint.weak(0, 0), newAngle);
 			}
 		}
 	}
