@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.util.FlxSpriteUtil;
 
 class Planet extends FlxSprite
@@ -34,7 +34,7 @@ class Planet extends FlxSprite
 		}
 
 		// Setup the mouse events
-		FlxMouseEventManager.add(this, onDown, onUp, null, null);
+		FlxMouseEvent.add(this, onDown, onUp, null, null);
 
 		// call out function to generate a random velocity
 		generateVelocity();

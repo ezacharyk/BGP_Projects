@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.system.FlxSound;
 import flixel.tweens.FlxTween;
 
@@ -31,10 +31,10 @@ class Card extends FlxSprite
 		cardName = frameN; // We store the name of the frmae for the front of the card for use later
 
 		// We initialize two sounds for the card flip. I define two osunds just to make the game more interesting audibly.
-		flipSound = FlxG.sound.load(AssetPaths.card_flip__wav, 0.4);
-		flip2Sound = FlxG.sound.load(AssetPaths.card_flip1__wav, 0.4);
+		flipSound = FlxG.sound.load(AssetPaths.card_flip__wav, 0.5);
+		flip2Sound = FlxG.sound.load(AssetPaths.card_flip1__wav, 0.5);
 
-		FlxMouseEventManager.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the card we can perform actions
+		FlxMouseEvent.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the card we can perform actions
 	}
 
 	override public function update(elapsed:Float)

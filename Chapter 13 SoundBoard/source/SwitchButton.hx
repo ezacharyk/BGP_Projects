@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.system.FlxSound;
 
 /**
@@ -23,7 +23,7 @@ class SwitchButton extends FlxSprite
 		// We initialize the sound for the flick of the switch
 		switchSound = FlxG.sound.load(AssetPaths.switch__wav, 0.4);
 
-		FlxMouseEventManager.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the switch
+		FlxMouseEvent.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the switch
 	}
 
 	override public function update(elapsed:Float)

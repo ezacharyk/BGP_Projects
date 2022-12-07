@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.system.FlxSound;
 
 /**
@@ -24,7 +24,7 @@ class PlayButton extends FlxSprite
 
 		animation.frameName = "play"; // We set the default image for the button
 
-		FlxMouseEventManager.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the button we can perform actions
+		FlxMouseEvent.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the button we can perform actions
 	}
 
 	override public function update(elapsed:Float)

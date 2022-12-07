@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.tweens.FlxTween;
 
 /**
@@ -25,7 +25,7 @@ class Card extends FlxSprite
 		animation.frameName = "back"; // We set the default image for the card to the back.
 		cardName = frameN; // We store the name of the frmae for the front of the card for use later
 
-		FlxMouseEventManager.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the card we can perform actions
+		FlxMouseEvent.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the card we can perform actions
 	}
 
 	override public function update(elapsed:Float)

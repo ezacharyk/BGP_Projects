@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.system.FlxSound;
 import flixel.tweens.FlxTween;
 
@@ -32,7 +32,7 @@ class LightButton extends FlxSprite
 		tickSound = FlxG.sound.load(AssetPaths.tick__wav, 0.4);
 		timerSound = FlxG.sound.load(AssetPaths.timer__wav, 0.4, true);
 
-		FlxMouseEventManager.add(this, onDown, onUp, null, null); // We set an onup mouse action so when a player clicks on the button
+		FlxMouseEvent.add(this, onDown, onUp, null, null); // We set an onup mouse action so when a player clicks on the button
 	}
 
 	override public function update(elapsed:Float)
