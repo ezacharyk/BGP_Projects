@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
 import flixel.system.FlxSound;
 
 /**
@@ -23,7 +23,7 @@ class BeepButton extends FlxSprite
 		// We initialize the sound for the button
 		beepSound = FlxG.sound.load(AssetPaths.beep__wav, 0.4, true);
 
-		FlxMouseEventManager.add(this, onDown, onUp, null, null); // We set an onup mouse action so when a player clicks and holds the button
+		FlxMouseEvent.add(this, onDown, onUp, null, null); // We set an onup mouse action so when a player clicks and holds the button
 	}
 
 	override public function update(elapsed:Float)
