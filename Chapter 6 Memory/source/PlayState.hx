@@ -72,7 +72,7 @@ class PlayState extends FlxState
 		super.update(elapsed);
 
 		// As long as we haven't matched all the cards, keep playing the game.
-		if (Reg.matches != 15)
+		if (Reg.matches != Reg.sets)
 		{
 			// If we are currently checking cards, and we have revealed the second one and we are not in the process of hiding cards, let's check to see if they are match.
 			if (Reg.checking == true && Reg.click == 2 && !hide)
@@ -187,7 +187,7 @@ class PlayState extends FlxState
 
 		var tempArray1:Array<String> = Reg.cardFaces;
 		shuffler.shuffle(tempArray1);
-		var tempArray2:Array<String> = tempArray1.splice(0, 15);
+		var tempArray2:Array<String> = tempArray1.splice(0, Reg.sets);
 
 		cards = tempArray2;
 		cards = cards.concat(tempArray2);
