@@ -10,12 +10,13 @@ class MenuState extends FlxState
 	private var background:FlxSprite;
 	private var title:FlxSprite;
 	private var playButton:FlxButton;
+	private var target:FlxSprite;
 
 	override public function create()
 	{
 		super.create();
 		// use the load function to change the mouse cursor to our custom one. We also need to offset it by 16 pixels to center it.
-		FlxG.mouse.load(AssetPaths.target__png, 1, -16, -16);
+		FlxG.mouse.visible = false;
 
 		// Add our back drop sprite to the game.
 		background = new FlxSprite(0, 0);
@@ -38,11 +39,19 @@ class MenuState extends FlxState
 		playButton.screenCenter();
 		playButton.y = 150;
 		add(playButton);
+
+		target = new FlxSprite(0, 0);
+		target.loadGraphic(AssetPaths.target__png, false, 32, 32);
+		target.x = FlxG.mouse.x - 16;
+		target.y = FlxG.mouse.y - 16;
+		add(target);
 	}
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		target.x = FlxG.mouse.x - 16;
+		target.y = FlxG.mouse.y - 16;
 	}
 
 	public function onButtonClicked()
