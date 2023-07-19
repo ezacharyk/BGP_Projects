@@ -65,7 +65,7 @@ switch (animation.frameName)
 tickSound.play();
 ```
 
-And finally we have a LightButton that plays and alarm after a seperate timer hits zero. Nothing super special about it. It was done to show that sound events don't need to be directly tied to play input.
+And finally we have a LightButton that plays and alarm after a seperate timer hits zero. Nothing super special about it. It was done to show that sound events don't need to be directly tied to player input.
 
 Finally, we have our music controls. This consists of buttons typically seen on a media player, a PlayButton, StopButton, PauseButton, MuteButton, and a FFButton (Fast Forward, or more accurately a skip). These all do what they sound like they do.
 
@@ -116,3 +116,6 @@ switch (Reg.song)
 ```
 
 You can see the the full Sound Board Example at [itch.io](https://heroofdermwood.itch.io/bgp-sound-board).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net

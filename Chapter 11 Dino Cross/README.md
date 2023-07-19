@@ -52,3 +52,6 @@ Using the above code, and a sprite sheet with sufficient frames, you can create 
 That is about it for the new functionality. 
 
 You can see the the full Dino Cross game at [itch.io](https://heroofdermwood.itch.io/bgp-dino-cross).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net

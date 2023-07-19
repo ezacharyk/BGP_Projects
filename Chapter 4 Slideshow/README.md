@@ -32,3 +32,6 @@ if (slideTimer >= 5)
 This gives us a basic look at changing the appearence of a sprite based on animation frames. This is not how we will typically make animated sprites, which we will get into in a later chapter, but it is one way of changing static sprites without loading a new graphic every time.
 
 You can see the Slideshow example at [itch.io](https://heroofdermwood.itch.io/bgp-slideshow-examplebgp-ch-4-slideshow).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net

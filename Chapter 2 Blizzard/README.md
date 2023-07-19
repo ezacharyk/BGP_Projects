@@ -44,7 +44,9 @@ In the update function we check if our snowflake counter is less than the total 
 private function drawSnowflake():Void
 {
     // Create a new snowflake Sprite. Set its position to a random point on the screen.
-    var snowflake:Snowflake = new Snowflake(Std.int(Math.random() * 620), Std.int(Math.random() * 440) + 20);
+    var snowflake:FlxSprite = new FlxSprite(Std.int(Math.random() * 620), Std.int(Math.random() * 440) + 20);
+    // load the png in the assets folder into the sprite object on creation.
+    snowflake.loadGraphic(AssetPaths.snowflake__png, false, 18, 18);
     // Add the snowflake to the game state
     add(snowflake);
     // update the number of flakes we have.

@@ -44,7 +44,7 @@ if (name == "Mars")
 
 For the planet Jupiter, we are using the screenWrap utility to simply wrap the planet around to the opposite side of the screen. When Neptune hits the edge of the screen, we reverse its velocity causing it to ricoche around the screen. Mars simply stops when it hits the edge. 
 
-We also add a mouse event manager to the planets that allow them to be dragged aroudn the screen. When they are let go, the game generates a new velocity and direction for them. 
+We also add a mouse event manager to the planets that allow them to be dragged around the screen. When they are let go, the game generates a new velocity and direction for them. 
 
 ```
 FlxMouseEvent.add(this, onDown, onUp, null, null);
@@ -74,3 +74,6 @@ if (dragging)
 ```
 
 You can see the the full Planets example at [itch.io](https://heroofdermwood.itch.io/bgp-planets).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net
