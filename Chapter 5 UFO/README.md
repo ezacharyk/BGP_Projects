@@ -52,7 +52,7 @@ function updateMovement()
         var newAngle:Float = 0;
         if (up)
         {
-            newAngle = 90;
+            newAngle = -90;
             if (left)
                 newAngle -= 45;
             else if (right)
@@ -61,7 +61,7 @@ function updateMovement()
         }
         else if (down)
         {
-            newAngle = -90;
+            newAngle = 90;
             if (left)
                 newAngle += 45;
             else if (right)
@@ -70,18 +70,17 @@ function updateMovement()
         }
         else if (left)
         {
-            newAngle = 0;
+            newAngle = 180;
             facing = LEFT;
         }
         else if (right)
         {
-            newAngle = 180;
+            newAngle = 0;
             facing = RIGHT;
         }
 
         // we determine our velocity based on angle and speed
-        velocity.set(SPEED, 0);
-        velocity.pivotDegrees(FlxPoint.weak(0, 0), newAngle);
+		velocity.setPolarDegrees(SPEED, newAngle);
     }
 }
 ```
@@ -89,3 +88,6 @@ function updateMovement()
 This method of player input is great for something as simple as this. But HaxeFlixel has some better ways to handle more complicated and varied input methods. We will be exploring those in the next few chapters. 
 
 You can see the UFO example at [itch.io](https://heroofdermwood.itch.io/bgp-ufo-example).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net

@@ -16,3 +16,6 @@ if (FlxG.sound.music == null) // don't restart the music if it's already playing
 That is it for playing music. We will dive a little more into music and sound in the next project.
 
 You can see the the full Dino Cross game at [itch.io](https://heroofdermwood.itch.io/bgp-dino-cross).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net

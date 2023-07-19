@@ -42,3 +42,6 @@ if (FlxCollision.pixelPerfectCheck(mars, jupiter)
 ```
 
 You can see the the full Planets 2 example at [itch.io](https://heroofdermwood.itch.io/bgp-planets-2).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net

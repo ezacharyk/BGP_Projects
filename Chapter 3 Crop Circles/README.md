@@ -71,3 +71,6 @@ private function drawCropLine(circle1:FlxPoint, circle2:FlxPoint):Void
 ```
 
 Like the Blizzard example in Chapter 2, I draw a random number of these circles and lines between them and then end. You can see the Crop Circles example at [itch.io](https://heroofdermwood.itch.io/bgp-ch-3-crop-circle).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net
