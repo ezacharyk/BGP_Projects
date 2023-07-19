@@ -6,7 +6,7 @@ import flixel.FlxState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.util.FlxCollision;
 

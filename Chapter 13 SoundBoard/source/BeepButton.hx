@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.input.mouse.FlxMouseEvent;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 
 /**
  * This is our Beep button class.

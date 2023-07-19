@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.input.actions.FlxAction;
 import flixel.input.actions.FlxActionManager;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 
 enum MoveDirection
 {
