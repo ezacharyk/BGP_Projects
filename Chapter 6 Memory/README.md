@@ -64,3 +64,6 @@ private function resetGame()
 Like I said at the beginning, this game does a whole lot more than it needed to do to be a proper mouse input example. I have commented the code so that you can see what each line and/or block is doing. I just wanted to highlight these specific sections. 
 
 You can see the the full Memory game at [itch.io](https://heroofdermwood.itch.io/bgp-memory-example).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net

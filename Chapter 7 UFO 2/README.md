@@ -21,7 +21,7 @@ up = _up.triggered;
 
 if (up)
 {
-    newAngle = 90;
+    newAngle = -90;
     if (left)
         newAngle -= 45;
     else if (right)
@@ -36,3 +36,6 @@ if (up)
 So that is it for the changes. You can define as many inputs as you need for your game using this method.
 
 You can see the the full UFO 2 example at [itch.io](https://heroofdermwood.itch.io/bgp-ufo2-example).
+
+# Project Notes and Updates
+You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net
