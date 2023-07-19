@@ -21,3 +21,6 @@ You can see the the full Memory game at [itch.io](https://heroofdermwood.itch.io
 
 # Project Notes and Updates
 You can follow the goals, notes and updates for the overall goal of this project at  http://ezknight.net
+
+# Credits
+UI Art by Me, Card Art by [AstroidBuster](http://alex.ezknight.net)
