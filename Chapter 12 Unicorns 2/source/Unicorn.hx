@@ -7,7 +7,7 @@ import flixel.input.actions.FlxAction;
 import flixel.input.actions.FlxActionManager;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxPoint;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 
 class Unicorn extends FlxSprite
 {

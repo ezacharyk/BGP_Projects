@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 
 class Dinosaur extends FlxSprite
 {
