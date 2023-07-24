@@ -4,12 +4,17 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.input.mouse.FlxMouseEvent;
-import flixel.tweens.FlxTween;
+import flixel.sound.FlxSound;
 
 class Ant extends FlxSprite
 {
 	private var startX:Int;
 	private var startY:Int;
+
+	var splat1Sound:FlxSound;
+	var splat2Sound:FlxSound;
+	var splat3Sound:FlxSound;
+	var missSound:FlxSound;
 
 	public function new(X:Int, Y:Int, Texture:FlxFramesCollection)
 	{
@@ -29,6 +34,12 @@ class Ant extends FlxSprite
 		setFacingFlip(LEFT, true, false);
 
 		FlxMouseEvent.add(this, null, onUp, null, null); // We set an onup mouse action so when a player clicks on the card we can perform actions
+		
+		// we generate our sounds for the splats around. We have 3 and will randomize which one plays.
+		splat1Sound = FlxG.sound.load(AssetPaths.splat1__wav, 0.5);
+		splat2Sound = FlxG.sound.load(AssetPaths.splat2__wav, 0.5);
+		splat3Sound = FlxG.sound.load(AssetPaths.splat3__wav, 0.5);
+		missSound = FlxG.sound.load(AssetPaths.miss__wav, 0.5);
 	}
 
 	override public function update(elapsed:Float)
@@ -53,6 +64,7 @@ class Ant extends FlxSprite
 		if ((y == 0 && x < startX) || (y == 80 && x > startX))
 		{
 			Reg.misses++;
+			missSound.play();
 			kill();
 		}
 	}
@@ -66,6 +78,15 @@ class Ant extends FlxSprite
 	{
 		// update score, kill sprite
 		Reg.hits += 5;
+		switch(FlxG.random.int(0,2))
+		{
+			case(0):
+				splat1Sound.play();
+			case(1):
+				splat2Sound.play();
+			case(2):
+				splat3Sound.play();
+		}
 		kill();
 	}
 }

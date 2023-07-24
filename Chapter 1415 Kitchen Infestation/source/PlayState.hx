@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 
 class PlayState extends FlxState
@@ -16,10 +16,6 @@ class PlayState extends FlxState
 
 	private var scoreTxt:FlxText;
 	private var missText:FlxText;
-
-	var splat1Sound:FlxSound;
-	var splat2Sound:FlxSound;
-	var splat3Sound:FlxSound;
 
 	var roach1:Roach;
 	var roach2:Roach;
@@ -40,11 +36,6 @@ class PlayState extends FlxState
 		background = new FlxSprite(0, 0);
 		background.loadGraphic(AssetPaths.kitchen__png, false, 320, 180);
 		add(background);
-
-		// we generate our sounds for the splats around. We have 3 and will randomize which one plays.
-		splat1Sound = FlxG.sound.load(AssetPaths.splat1__wav, 0.2);
-		splat2Sound = FlxG.sound.load(AssetPaths.splat2__wav, 0.2);
-		splat3Sound = FlxG.sound.load(AssetPaths.splat3__wav, 0.2);
 
 		addBugs();
 
@@ -100,10 +91,12 @@ class PlayState extends FlxState
 		roach2 = new Roach(176, 96, FlxAtlasFrames.fromTexturePackerJson(AssetPaths.bugs__png, AssetPaths.bugs__json));
 		add(roach2);
 
-		fly1 = new Fly(0, 96, FlxAtlasFrames.fromTexturePackerJson(AssetPaths.bugs__png, AssetPaths.bugs__json));
+		fly1 = new Fly(-16, 96, FlxAtlasFrames.fromTexturePackerJson(AssetPaths.bugs__png, AssetPaths.bugs__json));
 		fly1.facing = LEFT;
+		fly1.setTween();
 		add(fly1);
-		fly2 = new Fly(304, 128, FlxAtlasFrames.fromTexturePackerJson(AssetPaths.bugs__png, AssetPaths.bugs__json));
+		fly2 = new Fly(320, 128, FlxAtlasFrames.fromTexturePackerJson(AssetPaths.bugs__png, AssetPaths.bugs__json));
+		fly2.setTween();
 		add(fly2);
 
 		spider1 = new Spider(24, 128, FlxAtlasFrames.fromTexturePackerJson(AssetPaths.bugs__png, AssetPaths.bugs__json));

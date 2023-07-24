@@ -32,7 +32,7 @@ class MenuState extends FlxState
 		if (FlxG.sound.music == null) // don't restart the music if it's already playing
 		{
 			// we start playing music for the game. We only need to do it in thsi state. It will continue playing in other states.
-			FlxG.sound.playMusic(AssetPaths.HoliznaCC0RedSkies__ogg, .25, true);
+			//FlxG.sound.playMusic(AssetPaths.galacticfunk__wav, .25, true);
 		}
 
 		playButton = new FlxButton(0, 0, "Play", onButtonClicked);

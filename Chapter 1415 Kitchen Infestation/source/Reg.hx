@@ -1,4 +1,5 @@
 package;
+import flixel.sound.FlxSound;
 
 /**
  * Handy, pre-built Registry class that can be used to store 
