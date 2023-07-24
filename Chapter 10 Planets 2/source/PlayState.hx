@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxState;
 import flixel.addons.display.FlxStarField.FlxStarField2D;
 import flixel.util.FlxCollision;
@@ -20,11 +21,11 @@ class PlayState extends FlxState
 		add(new FlxStarField2D());
 
 		// generate some planets.
-		jupiter = new Planet(Std.int(Math.random() * 428 - 210) + 210, Std.int(Math.random() * 320 - 160) + 160, "Jupiter");
+		jupiter = new Planet(FlxG.random.int(0,428), FlxG.random.int(0,320), "Jupiter");
 		add(jupiter);
-		neptune = new Planet(Std.int(Math.random() * 428 - 210) + 210, Std.int(Math.random() * 320 - 160) + 160, "Neptune");
+		neptune = new Planet(FlxG.random.int(0,428), FlxG.random.int(0,320), "Neptune");
 		add(neptune);
-		mars = new Planet(Std.int(Math.random() * 428 - 274) + 274, Std.int(Math.random() * 320 - 224) + 224, "Mars");
+		mars = new Planet(FlxG.random.int(0,428), FlxG.random.int(0,320), "Mars");
 		add(mars);
 		earth = new Planet(320 - 32, 120, "Earth");
 		add(earth);

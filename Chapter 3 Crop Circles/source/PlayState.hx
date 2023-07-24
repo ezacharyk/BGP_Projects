@@ -36,7 +36,7 @@ class PlayState extends FlxState
 		add(text);
 
 		// Crop Circles are unpredictable. We should not know how many crop circles we get. Create a random number of them
-		totalCircles = Std.int(Math.random() * 20) + 10;
+		totalCircles = FlxG.random.int(0,30);
 
 		// A counter so that we know how many circles we have generated
 		numCircles = 0;
@@ -59,7 +59,7 @@ class PlayState extends FlxState
 				if (numCircles == 0)
 				{
 					// if this is the first circle, we don't need to draw a line. We only need to initialize the first circle variable.
-					circle_1 = new FlxSprite(Std.int(Math.random() * 620), Std.int(Math.random() * 440) + 20);
+					circle_1 = new FlxSprite(FlxG.random.int(0,620), FlxG.random.int(0,460));
 
 					// Pass the first circle variable and draw the first circle onto it.
 					drawCropCircle(circle_1);
@@ -67,7 +67,7 @@ class PlayState extends FlxState
 				else
 				{
 					// Creates a new sprte and assigns it to the second circle sprite.
-					circle_2 = new FlxSprite(Std.int(Math.random() * 620), Std.int(Math.random() * 440) + 20);
+					circle_2 = new FlxSprite(FlxG.random.int(0,620), FlxG.random.int(0,460));
 
 					// Pass the new circle sprite to the drawCropCircle function
 					drawCropCircle(circle_2);
@@ -97,7 +97,7 @@ class PlayState extends FlxState
 	private function drawCropCircle(circle:FlxSprite):Void
 	{
 		// Randomly creating a radius for the circle We want a minimum of 10 radius and a max of 50.
-		var radius:Int = Std.int(Math.random() * 40) + 10;
+		var radius:Int = FlxG.random.int(0,50);
 
 		// Create a transparent graphic to act as the canvas for the circle
 		circle.makeGraphic(radius * 2, radius * 2, FlxColor.TRANSPARENT, true);

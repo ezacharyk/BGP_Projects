@@ -30,7 +30,7 @@ class PlayState extends FlxState
 		add(text);
 
 		// Blizzards are unpredictable. We should not know how many flakes we get. Create a random number of them
-		totalFlakes = Std.int(Math.random() * 1000);
+		totalFlakes = FlxG.random.int(0,1000);
 
 		// A counter so that we know how many flakes we have generated
 		numFlakes = 0;
@@ -64,7 +64,7 @@ class PlayState extends FlxState
 	private function drawSnowflake():Void
 	{
 		// Create a new snowflake Sprite. Set its position to a random point on the screen.
-		var snowflake:FlxSprite = new FlxSprite(Std.int(Math.random() * 620), Std.int(Math.random() * 440) + 20);
+		var snowflake:FlxSprite = new FlxSprite(FlxG.random.int(0,620), FlxG.random.int(0,460));
 		// load the png in the assets folder into the sprite object on creation.
 		snowflake.loadGraphic(AssetPaths.snowflake__png, false, 18, 18);
 		// Add the snowflake to the game state
