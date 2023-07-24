@@ -151,8 +151,8 @@ class UFO extends FlxSprite
 		// This is just for fun. If the player presses the A button on the controller, we warp the UFO to a random position on the screen.
 		if (_warp.triggered)
 		{
-			x = Std.int(Math.random() * (640 - width));
-			y = Std.int(Math.random() * (360 - height));
+			x = FlxG.random.int(0,Std.int(640 - width));
+			y = FlxG.random.int(0,Std.int(360 - height));
 		}
 	}
 }
