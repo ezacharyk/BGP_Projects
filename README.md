@@ -25,8 +25,8 @@ This project will contain HaxeFlixel versions of the final project from each of 
 - [X] 11: Example Game: Henway
 - [X] 12 Playing Digital Sound Effects
 - [X] 13: Playing MIDI Music
-- [ ] 14: Example Game: Battle Office
-- [ ] 15: Animating the Appearance of Sprites
+- [X] 14: Example Game: Battle Office
+- [X] 15: Animating the Appearance of Sprites
 - [ ] 16: Creating Backgrounds for Your Sprites
 - [ ] 17: Example Game Meteor Defense
 - [ ] 18: Teaching Games To Think
