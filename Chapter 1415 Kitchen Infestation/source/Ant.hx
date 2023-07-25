@@ -27,9 +27,11 @@ class Ant extends FlxSprite
 		// we load in the frames collection and use it as the base sprite.
 		frames = Texture; // frames is a variable inhereted from FlxSprite
 
+		//we create our animation
 		animation.addByNames("idle", ["ant1", "ant2"], 4, true);
 		animation.play("idle");
 
+		//we set directions which will be used for which way our spiders face by default
 		setFacingFlip(RIGHT, false, false);
 		setFacingFlip(LEFT, true, false);
 
@@ -39,45 +41,53 @@ class Ant extends FlxSprite
 		splat1Sound = FlxG.sound.load(AssetPaths.splat1__wav, 0.5);
 		splat2Sound = FlxG.sound.load(AssetPaths.splat2__wav, 0.5);
 		splat3Sound = FlxG.sound.load(AssetPaths.splat3__wav, 0.5);
+		//we also have a sound that plays when the bug escapes
 		missSound = FlxG.sound.load(AssetPaths.miss__wav, 0.5);
 	}
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		if (facing == LEFT)
+
+		if(alive)
 		{
-			velocity.x = 48;
-			if (x > startX + 96)
+			if (facing == LEFT)
 			{
-				facing = RIGHT;
+				//ants move in one direction, and when they hit the end of their path, they turn around and leave
+				velocity.x = 48;
+				if (x > startX + 96)
+				{
+					facing = RIGHT;
+				}
 			}
-		}
-		else
-		{
-			velocity.x = -48;
-			if (x < startX - 96)
+			else
 			{
-				facing = LEFT;
+				velocity.x = -48;
+				if (x < startX - 96)
+				{
+					facing = LEFT;
+				}
 			}
-		}
-		if ((y == 0 && x < startX) || (y == 80 && x > startX))
-		{
-			Reg.misses++;
-			missSound.play();
-			kill();
+			//if the ants get back to their start position, we increment the miss count and reset values
+			if ((y == 0 && x < startX) || (y == 80 && x > startX))
+			{
+				Reg.misses++;
+				missSound.play();
+				kill();
+				x = startX;
+				y = startY;
+			}
 		}
 	}
 
 	/**
-	 * In the onUp function we check to see if the card has been matched, or if it is already revealed and skips the actions if so.
-	 * We also check if we have already selected two cards, if so, we ignore the action.
-	 * If we haven't already selected two cards, and if this card hasn't already been acted upon, we reveal the card.
+	 * In the onUp function we add the value of the bug to the score. Then we play a sound, kill the sprite and reset values.
 	 */
 	public function onUp(_):Void
 	{
 		// update score, kill sprite
 		Reg.hits += 5;
+		//We play one of three splat sounds to make the game interesting.
 		switch(FlxG.random.int(0,2))
 		{
 			case(0):
@@ -88,5 +98,7 @@ class Ant extends FlxSprite
 				splat3Sound.play();
 		}
 		kill();
+		x = startX;
+		y = startY;
 	}
 }

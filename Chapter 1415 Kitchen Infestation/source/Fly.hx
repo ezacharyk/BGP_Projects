@@ -22,6 +22,8 @@ class Fly extends FlxSprite
 	var splat3Sound:FlxSound;
 	var missSound:FlxSound;
 
+	var tween:FlxTween;
+
 	public function new(X:Int, Y:Int, Texture:FlxFramesCollection)
 	{
 		// X,Y: Starting coordinates
@@ -33,9 +35,11 @@ class Fly extends FlxSprite
 		// we load in the frames collection and use it as the base sprite.
 		frames = Texture; // frames is a variable inhereted from FlxSprite
 
+		//we create our animation
 		animation.addByNames("idle", ["fly1", "fly2"], 4, true);
 		animation.play("idle");
 
+		//we set directions which will be used for which way our spiders face by default
 		setFacingFlip(RIGHT, false, false);
 		setFacingFlip(LEFT, true, false);
 
@@ -45,6 +49,7 @@ class Fly extends FlxSprite
 		splat1Sound = FlxG.sound.load(AssetPaths.splat1__wav, 0.5);
 		splat2Sound = FlxG.sound.load(AssetPaths.splat2__wav, 0.5);
 		splat3Sound = FlxG.sound.load(AssetPaths.splat3__wav, 0.5);
+		//we also have a sound that plays when the bug escapes
 		missSound = FlxG.sound.load(AssetPaths.miss__wav, 0.5);
 	}
 
@@ -55,14 +60,15 @@ class Fly extends FlxSprite
 
 	public function setTween()
 	{
+		//For the flies, we are creating a tween animation. This makes the fly move in a bit of a loop and then then head back to start
 		var options:TweenOptions = {type: PINGPONG, ease: FlxEase.sineInOut, onComplete: onComplete};
 		if (facing == LEFT)
 		{
-			FlxTween.quadMotion(this, startX, startY, 0, 20, startX + 120, startY, 3, true, options);
+			tween = FlxTween.quadMotion(this, startX, startY, 0, 20, startX + 120, startY, 3, true, options);
 		}
 		else 
 		{
-			FlxTween.quadMotion(this, startX, startY, 120, 20, startX - 120, startY, 3, true, options);
+			tween = FlxTween.quadMotion(this, startX, startY, 120, 20, startX - 120, startY, 3, true, options);
 		}
 	}
 
@@ -73,9 +79,13 @@ class Fly extends FlxSprite
 		{
 			Reg.misses++;
 			missSound.play();
+			tween.cancel();
 			kill();
+			flying = false;
+			x = startX;
+			y = startY;
 		}
-		flying = !flying;
+		flying = true;
 	}
 
 	/**
@@ -97,5 +107,9 @@ class Fly extends FlxSprite
 				splat3Sound.play();
 		}
 		kill();
+		tween.cancel();
+		x = startX;
+		y = startY;
+		flying = false;
 	}
 }
